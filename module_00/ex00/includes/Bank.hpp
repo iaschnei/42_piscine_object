@@ -12,8 +12,6 @@ struct Bank {
     // Account sub-struct, integrated to the Bank struct 
     struct Account {
 
-		Account(int id);
-
 		friend std::ostream& operator << (std::ostream& p_os, const Account& p_account){
 
 		    p_os << "Account ID: " << p_account.id << ", Account Liquidity: " << p_account.account_liquidity;
@@ -23,6 +21,9 @@ struct Bank {
 		friend struct Bank;
 
 	 private:
+
+	 	Account(int id);
+
 	 	int 	id;
 	 	long 	account_liquidity;
     };
