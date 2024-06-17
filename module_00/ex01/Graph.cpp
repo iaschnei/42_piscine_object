@@ -38,7 +38,7 @@ void    Graph::draw_graph() {
 
             for (it = this->points.begin(); it != this->points.end(); it++) {
 
-                if (it->get_x_value() == draw_x && it->get_y_value() == draw_y) {
+                if (it->get_x_value() == draw_x && it->get_y_value() == draw_y && drew_point == false) {
                     std::cout << "X ";
                     drew_point = true;
                 }
