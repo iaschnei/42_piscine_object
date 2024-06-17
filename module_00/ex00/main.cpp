@@ -3,7 +3,7 @@
 #include "includes/Colors.hpp"
 #include "includes/Bank.hpp"
 
-int main() {
+int main(void) {
 
 	try {
 
