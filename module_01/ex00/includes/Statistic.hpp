@@ -18,22 +18,14 @@ struct Statistic {
     }
 
     // Getters
-    int get_level() const { 
-        return level; 
-    }
+    int get_level() const { return level; }
 
-    int get_exp() const { 
-        return exp; 
-    }
+    int get_exp() const { return exp; }
 
     // Setters
-    void set_level(int level_val) { 
-        level = level_val; 
-    }
+    void set_level(int level_val) { level = level_val; }
 
-    void set_exp(int exp_val) { 
-        exp = exp_val; 
-    }
+    void set_exp(int exp_val) { exp = exp_val; }
 
  private:
 

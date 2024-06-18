@@ -18,30 +18,18 @@ struct Position {
     }
 
     // Getters
-    int get_x() const { 
-        return x; 
-    }
+    int get_x() const { return x; }
 
-    int get_y() const { 
-        return y; 
-    }
+    int get_y() const { return y; }
 
-    int get_z() const { 
-        return z; 
-    }
+    int get_z() const { return z; }
 
     // Setters
-    void set_x(int x_val) { 
-        x = x_val; 
-    }
+    void set_x(int x_val) { x = x_val; }
 
-    void set_y(int y_val) { 
-        y = y_val; 
-    }
+    void set_y(int y_val) { y = y_val; }
 
-    void set_z(int z_val) { 
-        z = z_val; 
-    }
+    void set_z(int z_val) { z = z_val; }
 
  private:
 
