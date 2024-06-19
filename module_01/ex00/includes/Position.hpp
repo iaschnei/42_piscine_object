@@ -8,11 +8,11 @@ struct Position {
 
  public:
 
-    // Constructor
+    // Constructor/Destructor
     Position(int x_val = 0, int y_val = 0, int z_val = 0) : x(x_val), y(y_val), z(z_val) {
         std::cout << GREEN << "Position constructor called" << RESET << std::endl;
     }
-
+    
     ~Position() {
         std::cout << RED << "Position destructor called" << RESET << std::endl;
     }

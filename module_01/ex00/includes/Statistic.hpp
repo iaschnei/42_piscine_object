@@ -8,7 +8,7 @@ struct Statistic {
 
  public:
 
-    // Constructor
+    // Constructor/Destructor
     Statistic(int exp_val = 0, int level_val = 0) : level(level_val), exp(exp_val) {
         std::cout << GREEN << "Statistic constructor called" << RESET << std::endl;
     }
