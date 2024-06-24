@@ -1,146 +1,131 @@
 @startuml
 
-skin rose
+!theme mars
 
-abstract class LinkablePart
-{
+abstract class LinkablePart {
   +{abstract} void execute(float p_pression)
 }
 
-class Wheel
-{
+class Wheel {
   +void executeRotation(float p_force)
 }
 
-class Gear
-{
-  +int demultiplier
+class Gear {
+  +demultiplier: int
 }
 
-class "Singleton<GearLever>"
-{
-  +Gear[] gears
-  +int level
+class GearLever {
+  +gears: Gear[]
+  +level: int
   +void change()
   +Gear* activeGear()
 }
 
-class Transmission
-{
-  +std::vector<Wheel*> weels 
+class Transmission {
+  +weels: std::vector<Wheel*> 
   +void activate(float p_force)
 }
 
-class Crankshaft
-{
+class Crankshaft {
   +Transmission* transmission
   +void receiveForce(float p_volume)
 }
 
-class ExplosionChamber
-{
-  + Crankshaft* crankshaft
-  + void fill(float p_volume)
+class ExplosionChamber {
+  +Crankshaft* crankshaft
+  +void fill(float p_volume)
 }
 
-class Injector
-{
-  + ExplosionChamber* explosionChamber
-  + void execute(float p_pression)
+class Injector {
+  +ExplosionChamber* explosionChamber
+  +void execute(float p_pression)
 }
 
-class Motor
-{
-  +Injector injector
-  +ExplosionChamber explosionChamber
-  +Crankshaft crankshaft
+class Motor {
+  +injector: Injector
+  +explosionChamber: ExplosionChamber
+  +crankshaft: Crankshaft
   +void connectToTransmission(Transmission* p_transmission)
 }
 
-class Pedal
-{
-  +LinkablePart* target
+class Pedal {
+  +target: LinkablePart*
   +void setTarget(LinkablePart* p_part)
   +void use(float p_pression)
 }
 
-class Direction
-{
-  +Wheel[] wheels
+class Direction {
+  +wheels: Wheel[]
   +void turn(float p_angle)
 }
 
-class DAE
-{
-  +Direction* direction
-  +float force
+class DAE {
+  +direction: Direction*
+  +force: float
   +void use(float p_angle)
 }
 
-class SteerWheel
-{
-  +DAE* dae
+class SteerWheel {
+  +dae: DAE*
   +void turn(float p_angle)
 }
 
 
-class Brake
-{
-  +Wheel* wheel
+class Brake {
+  +wheel: Wheel*
   +void execute(float p_force)
   +void attackWheel(Wheel* p_wheel)
 }
 
-class BrakeController
-{
-  +Brake[] brakes
+class BrakeController {
+  +brakes: Brake[]
   +void execute(float p_pression)
 }
 
-class Cockpit 
-{
-  +Pedal pedal
-  +SteerWheel steerWheel
-  +GearLever gearLever
+class Cockpit  {
+  +pedal: Pedal
+  +steerWheel: SteerWheel
+  +gearLever: GearLever
   
-  + void setPedal(Pedal * _pedal)
-  + void setSteerWheel(SteerWheel * _steerWheel)
-  + void setGearLever(GearLever * _gearLever)
+  + void managePedal(Pedal * _pedal)
+  + void manageSteerWheel(SteerWheel * _steerWheel)
+  + void manageGearLever(GearLever * _gearLever)
   
 }
 
 class Electronics {
-  +DAE dae
+  +dae: DAE
 }
 
-class Car
-{
-  +BrakeController brakeController
-  +Direction direction
-  +Transmission transmission
-  +Motor motor
-  +Electronics electronics
-  +Cockpit cockpit
+class Car {
+  +brakeController: BrakeController
+  +direction: Direction
+  +transmission: Transmission
+  +motor: Motor
+  +electronics: Electronics
+  +cockpit: Cockpit
   
 }
 
 Transmission  *--  Wheel: Composition
 Crankshaft  *--  Transmission: Composition
-ExplosionChamber  *--  Crankshaft
+GearLever <|-- "Singleton<GearLever>": Inheritance
+ExplosionChamber  *--  Crankshaft: Composition
 Injector  <|--  LinkablePart: Inheritance
 Injector  *-- ExplosionChamber: Composition
 Motor "1 " *-- Injector: Composition
 Motor "1  " *-- ExplosionChambe: Compositionr
 Motor "1  " *-- Crankshaft: Composition
-Pedal *-- LinkablePart
+Pedal *-- LinkablePart: Composition
 Direction *-- Wheel: Composition
 DAE *-- Direction: Composition
 SteerWheel *-- DAE: Composition
 Brake *-- Wheel: Composition
+BrakeController *-- Brake: Composition
 BrakeController <|-- LinkablePart: Inheritance
 Cockpit *-- Pedal: Composition
 Cockpit *-- SteerWheel: Composition
-Cockpit *-- "Singleton<GearLever>": Composition
+Cockpit *-- GearLever: Composition
 Electronics *-- DAE: Composition
 Car *-- BrakeController: Composition
 Car *-- Direction: Composition
@@ -148,6 +133,6 @@ Car *-- Transmission: Composition
 Car *-- Motor: Composition
 Car *-- Electronics: Composition
 Car *-- Cockpit: Composition
-"Singleton<GearLever>" *-- Gear: Composition
+GearLever *-- Gear: Composition
 
 @enduml
