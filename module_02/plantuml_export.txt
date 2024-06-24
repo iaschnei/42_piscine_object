@@ -1,0 +1,153 @@
+@startuml
+
+skin rose
+
+abstract class LinkablePart
+{
+  +{abstract} void execute(float p_pression)
+}
+
+class Wheel
+{
+  +void executeRotation(float p_force)
+}
+
+class Gear
+{
+  +int demultiplier
+}
+
+class "Singleton<GearLever>"
+{
+  +Gear[] gears
+  +int level
+  +void change()
+  +Gear* activeGear()
+}
+
+class Transmission
+{
+  +std::vector<Wheel*> weels 
+  +void activate(float p_force)
+}
+
+class Crankshaft
+{
+  +Transmission* transmission
+  +void receiveForce(float p_volume)
+}
+
+class ExplosionChamber
+{
+  + Crankshaft* crankshaft
+  + void fill(float p_volume)
+}
+
+class Injector
+{
+  + ExplosionChamber* explosionChamber
+  + void execute(float p_pression)
+}
+
+class Motor
+{
+  +Injector injector
+  +ExplosionChamber explosionChamber
+  +Crankshaft crankshaft
+  +void connectToTransmission(Transmission* p_transmission)
+}
+
+class Pedal
+{
+  +LinkablePart* target
+  +void setTarget(LinkablePart* p_part)
+  +void use(float p_pression)
+}
+
+class Direction
+{
+  +Wheel[] wheels
+  +void turn(float p_angle)
+}
+
+class DAE
+{
+  +Direction* direction
+  +float force
+  +void use(float p_angle)
+}
+
+class SteerWheel
+{
+  +DAE* dae
+  +void turn(float p_angle)
+}
+
+
+class Brake
+{
+  +Wheel* wheel
+  +void execute(float p_force)
+  +void attackWheel(Wheel* p_wheel)
+}
+
+class BrakeController
+{
+  +Brake[] brakes
+  +void execute(float p_pression)
+}
+
+class Cockpit 
+{
+  +Pedal pedal
+  +SteerWheel steerWheel
+  +GearLever gearLever
+  
+  + void setPedal(Pedal * _pedal)
+  + void setSteerWheel(SteerWheel * _steerWheel)
+  + void setGearLever(GearLever * _gearLever)
+  
+}
+
+class Electronics {
+  +DAE dae
+}
+
+class Car
+{
+  +BrakeController brakeController
+  +Direction direction
+  +Transmission transmission
+  +Motor motor
+  +Electronics electronics
+  +Cockpit cockpit
+  
+}
+
+Transmission  *--  Wheel: Composition
+Crankshaft  *--  Transmission: Composition
+ExplosionChamber  *--  Crankshaft
+Injector  <|--  LinkablePart: Inheritance
+Injector  *-- ExplosionChamber: Composition
+Motor "1 " *-- Injector: Composition
+Motor "1  " *-- ExplosionChambe: Compositionr
+Motor "1  " *-- Crankshaft: Composition
+Pedal *-- LinkablePart
+Direction *-- Wheel: Composition
+DAE *-- Direction: Composition
+SteerWheel *-- DAE: Composition
+Brake *-- Wheel: Composition
+BrakeController <|-- LinkablePart: Inheritance
+Cockpit *-- Pedal: Composition
+Cockpit *-- SteerWheel: Composition
+Cockpit *-- "Singleton<GearLever>": Composition
+Electronics *-- DAE: Composition
+Car *-- BrakeController: Composition
+Car *-- Direction: Composition
+Car *-- Transmission: Composition
+Car *-- Motor: Composition
+Car *-- Electronics: Composition
+Car *-- Cockpit: Composition
+"Singleton<GearLever>" *-- Gear: Composition
+
+@enduml
