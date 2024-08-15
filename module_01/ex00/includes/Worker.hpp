@@ -30,10 +30,13 @@ class Worker {
         delete(statistic);
     };
 
-    Position    *position;
-    Statistic   *statistic;
+    Position    *position;                              // Composition relationship : Worker owns and is responsible for it. When Worker dies, so does it
+    Statistic   *statistic;                             // Same thing
 
-    Tool    *get_tool(int index) {
+    Tool    *get_tool(long unsigned int index) {
+        if (index >= this->tools.size()) {
+            return (NULL);
+        }
         if (this->tools[index] != NULL) {
             return (this->tools[index]);
         }
@@ -108,8 +111,8 @@ class Worker {
 
     std::string  name;
 
-    std::vector<Tool *>         tools;
-    std::vector<Workshop *>    workshops;
+    std::vector<Tool *>         tools;              // Aggregation relationship : the worker can own a tool, but the tool can live without the worker
+    std::vector<Workshop *>    workshops;           // Association relationship : the worker does not own the workshop, but both know about each other
 
 };
 

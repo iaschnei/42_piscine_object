@@ -10,8 +10,9 @@ class Workshop {
  public:
 
     // Constructor/Destructor
-    Workshop() {
-        std::cout << GREEN << "Workshop constructor called" << RESET << std::endl;
+    Workshop(std::string name = "Workshop") {
+        this->name = name;
+        std::cout << GREEN << "Workshop constructor called : " << this->name << RESET << std::endl;
     }
     ~Workshop() {
         std::cout << RED << "Workshop destructor called" << RESET << std::endl;
@@ -20,13 +21,13 @@ class Workshop {
     void    register_worker(Worker *worker) {
         for (long unsigned int i = 0; i < this->workers.size(); i++) {
             if (this->workers[i] == worker) {
-                std::cout << YELLOW << "Workshop: Worker is already registered" << RESET << std::endl;
+                std::cout << YELLOW << this->name << ": Worker is already registered" << RESET << std::endl;
                 return ;
             }
         }
         worker->add_workshop(this);
         this->workers.push_back(worker);
-        std::cout << BLUE << "Workshop: a Worker has joined" << RESET << std::endl;
+        std::cout << BLUE << this->name << ": a Worker has joined" << RESET << std::endl;
     }
 
     void    release_worker(Worker *worker) {
@@ -34,11 +35,11 @@ class Workshop {
             if (this->workers[i] == worker) {
                 worker->remove_workshop(this);
                 this->workers.erase(this->workers.begin() + i);
-                std::cout << BLUE << "Workshop: a Worker has left" << RESET << std::endl;
+                std::cout << BLUE << this->name << ": a Worker has left" << RESET << std::endl;
                 return ;
             }
         }
-        std::cout << YELLOW << "Workshop: worker was not registered" << RESET << std::endl;
+        std::cout << YELLOW << this->name << ": worker was not registered" << RESET << std::endl;
 
     }
 
@@ -51,6 +52,7 @@ class Workshop {
  private:
 
     std::vector<Worker *> workers;
+    std::string name;
 
 };
 
