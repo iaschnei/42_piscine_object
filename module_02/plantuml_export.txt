@@ -107,20 +107,20 @@ class Car {
   
 }
 
-Transmission  *--  Wheel: Composition
-Crankshaft  *--  Transmission: Composition
+Transmission  o--  Wheel: Aggregation
+Crankshaft  o--  Transmission: Aggregation
 GearLever <|-- "Singleton<GearLever>": Inheritance
-ExplosionChamber  *--  Crankshaft: Composition
+ExplosionChamber  o--  Crankshaft: Aggregation
 Injector  <|--  LinkablePart: Inheritance
-Injector  *-- ExplosionChamber: Composition
+Injector  o-- ExplosionChamber: Aggregation
 Motor "1 " *-- Injector: Composition
-Motor "1  " *-- ExplosionChambe: Compositionr
+Motor "1  " *-- ExplosionChamber: Composition
 Motor "1  " *-- Crankshaft: Composition
 Pedal *-- LinkablePart: Composition
-Direction *-- Wheel: Composition
-DAE *-- Direction: Composition
-SteerWheel *-- DAE: Composition
-Brake *-- Wheel: Composition
+Direction o-- Wheel: Aggregation
+DAE o-- Direction: Aggregation
+SteerWheel o-- DAE: Aggregation
+Brake o-- Wheel: Aggregation
 BrakeController *-- Brake: Composition
 BrakeController <|-- LinkablePart: Inheritance
 Cockpit *-- Pedal: Composition
