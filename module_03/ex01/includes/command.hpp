@@ -5,6 +5,9 @@
 # include <utility>
 # include <string>
 
+// This class is 'closed' -> it is usable as it is
+// But it's also 'open' -> it can be expended using inheritance 
+
 class Command {
 
  public:
