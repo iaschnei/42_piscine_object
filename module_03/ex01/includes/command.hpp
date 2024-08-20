@@ -5,7 +5,7 @@
 # include <utility>
 # include <string>
 
-// This class is 'closed' -> it is usable as it is
+// This class is 'closed' -> it is usable as it is and should not be changed
 // But it's also 'open' -> it can be expended using inheritance 
 
 class Command {
