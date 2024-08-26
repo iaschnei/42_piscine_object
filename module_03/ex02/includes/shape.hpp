@@ -1,16 +1,14 @@
 #ifndef SHAPE_HPP
-# define SHAPE_HPP
+#define SHAPE_HPP
 
 class Shape {
 
- public:
+public:
+  Shape() {}
+  virtual ~Shape() {}
 
-    Shape() {}
-    virtual ~Shape() {}
-
-    virtual int area_calculator(const Shape &shape) = 0;
-    virtual int perimeter_calculator(const Shape &shape) = 0;
-
+  virtual double area_calculator() = 0;
+  virtual double perimeter_calculator() = 0;
 };
 
 #endif
