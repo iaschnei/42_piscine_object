@@ -23,6 +23,7 @@ int main(void) {
             << ". And perimeter is : " << base_circ->perimeter_calculator()
             << RESET << std::endl;
 
+  // Now with Shape objects only
   Shape *rect = new Rectangle(4, 5);
   Shape *tri = new Triangle(17, 21, 10, 8);
   Shape *circ = new Circle(7);
