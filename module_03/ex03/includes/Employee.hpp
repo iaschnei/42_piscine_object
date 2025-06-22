@@ -11,12 +11,16 @@ class Employee {
 
     public:
 
-    Employee(std::string name) {
+    
+
+    Employee(int hourlyValue, std::string name) {
+        this->hourlyValue = hourlyValue;
         this->name = name;
-        std::cout << GREEN << "Employee created with the name " << this->name << RESET << std::endl;
+        this->total_work_time = 0;
+        std::cout << GREEN << "Employee created with name " << name << RESET << std::endl;
     }
 
-    ~Employee() {
+    virtual ~Employee() {
         std::cout << RED << "Employee deleted" << RESET << std::endl;
     }
 
@@ -26,13 +30,24 @@ class Employee {
 
     int executeWorkday(void) {
         std::cout << BLUE << "Employee " << this->name << " is working for 7 hours..." << RESET << std::endl;
+        this->total_work_time += 7;
         return (7 * this->hourlyValue);
     }
 
-    private:
+    int get_hourly_value() {
+        return this->hourlyValue;
+    }
 
-    std::string name;
+    int get_total_work_time() {
+        return this->total_work_time;
+    }
+
+    protected:
+
     int hourlyValue;
+    std::string name;
+    int total_work_time;
+    int current_month_days;
 
 };
 
