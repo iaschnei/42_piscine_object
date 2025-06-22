@@ -1,5 +1,3 @@
-#include "includes/Colors.hpp"
-#include "includes/Employee.hpp"
 #include "includes/EmployeeManager.hpp"
 #include "includes/ISalaried.hpp"
 #include "includes/IExtern.hpp"
