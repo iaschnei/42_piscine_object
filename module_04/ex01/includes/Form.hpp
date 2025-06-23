@@ -19,7 +19,10 @@ public:
 
     Form(FormType p_formType)
     {
-
+        //TODO: remove (for compilation errors)
+        if (p_formType == FormType::CourseFinished) {
+            return ;
+        }
     }
 
     virtual void execute() = 0;

@@ -8,7 +8,7 @@ class Person;
 class Room {
 
 public:
-    Room();
+    Room() = default;
     bool canEnter(Person*);
     void enter(Person*);
     void exit(Person*);

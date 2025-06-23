@@ -10,7 +10,9 @@ class Professor;
 class Course {
 
 public:
-    Course(std::string p_name);
+    Course(std::string p_name) {
+        this->_name = p_name;
+    }
     void assign(Professor* p_professor);
     void subscribe(Student* p_student);
 
